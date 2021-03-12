@@ -20,11 +20,18 @@ from django.urls import path
 # 생성한 뷰를 url로 연결하기 위해
 # ex. index()를 사용하기 위해 index()가 위치한 view.py를 import
 import blogapp.views
-
+from django.conf.urls import include
+# MEDIA 경로를참조
+from django.conf import settings
+from django.conf.urls.static import static
 #  path(route, view, kwargs=None, name=None)
 urlpatterns = [
     path('admin/', admin.site.urls), # http://www.블로그주소.com/admin 으로 접속
     path('', blogapp.views.index, name='index'), # http://www.블로그주소.com/ 으로 접속
     path('blogMain/', blogapp.views.blogMain, name = 'blogMain'),# http://www.블로그주소.com/blogMain/ 으로 접속
     path('blogMain/createBlog/', blogapp.views.createBlog, name = 'createBlog'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+# MEDIA 경로를참조
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

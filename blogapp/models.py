@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here. ->데이터베이스 설계
 
 class Blog(models.Model):
@@ -13,4 +15,4 @@ class Blog(models.Model):
     # User 테이블에서 값이 삭제되면 author 항목도 영향을 받아 삭제됨
     # 기본값을 관리자 계정으로 설정
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=1)
-    body = models.TextField()
+    body = RichTextUploadingField()

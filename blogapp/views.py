@@ -4,6 +4,7 @@
 from django.shortcuts import render, redirect
 # form을 createBlog.html로 보내기 위해 import로 불러들임
 from .forms import CreateBlog
+from  .models import Blog
 
 # Create your views here.
 
@@ -29,7 +30,11 @@ def index(request):
     return render(request, 'index.html')
 
 def blogMain(request):
-    return render(request, 'blogMain.html')
+
+    # 데이터베이스에 저장된 객체를 모두 가리키는 객체 'blogs'를 'blogMain.html'에 보내줌
+    blogs = Blog.objects.all()
+
+    return render(request, 'blogMain.html', {'blogs' : blogs})
 
 def createBlog(request):
 

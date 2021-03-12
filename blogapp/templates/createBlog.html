@@ -11,11 +11,19 @@
 {#    POST: GET보다 데이터의 길이, 형식에 제약이 없음 데이터를 감싸서 보내기 때문에 전달되는 데이터가 보이지 않음#}
 {#          POST 데이터 전달 과정에서 보안을 위해 [csrf_token]을 반드시 사용#}
 {#    GET: 전달되는 데이터가 url 상에 보임, 따라서 길이에 제약(예전의 장비일 경우)#}
-    <form method="POST">
-        {% csrf_token %}
-        {#    form을 <p> 태그로 감싼 형태로 출력   #}
-        {{ form.as_p }}
-        <input type="submit" value="저장"/>
-    </form>
-
+    <br>
+    <div class="container">
+        <h1>글쓰기</h1>
+        <hr>
+        <br><br>
+{#        enctype->문자 이외의 이미지 파일 같은 것도 묶여서 전송#}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+{#            CKEditor 폼 적용#}
+            {{ form.media }}
+            {#    form을 <p> 태그로 감싼 형태로 출력   #}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-dark" value="저장"/>
+        </form>
+    </div>
 {% endblock %}

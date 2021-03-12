@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogapp.apps.BlogappConfig',
+    'ckeditor', #text 편집기
+    'ckeditor_uploader', #이미지 업로드
 ]
+# 업로드 파일의 경로를 지정 ('media'루트 디렉토리의 하위 디렉토리)
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -135,3 +139,8 @@ STATICFILES_DIRS = [
 # [STATIC_ROOT]: 하나의 프로젝트에서 흩어져있는 'static file'들을 한 곳으로 모으는데
 # 프로젝트 디렉토리에서 [static] 디렉토리에 모을 것이라는 의미
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# 사용자들이 올리는 파일들 'media'로 분류
+MEDIA_URL = '/media/'
+# 'media'루트를 설정 (static 파일처럼)
+MEDIA_ROOT = 'media/'
