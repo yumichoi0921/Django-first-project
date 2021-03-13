@@ -1,10 +1,13 @@
 # 파이썬 문법을 활용하여 여러 함수들을 생성
 # 이 함수들을 이용하여 자신이 원하는 형태로 데이터를 처리한 후 탬플릿을 불러오거나 URL로 이동
 
-from django.shortcuts import render, redirect
+# 'get_object_or_404'->모델로부터 객체를 받을 때 객체가 있으면 받고, 없을 시 404 에러 페이지를 보여줌
+from django.shortcuts import render, redirect, get_object_or_404
 # form을 createBlog.html로 보내기 위해 import로 불러들임
 from .forms import CreateBlog
-from  .models import Blog
+from .models import Blog, Comment
+
+
 
 # Create your views here.
 
@@ -55,4 +58,16 @@ def createBlog(request):
         form = CreateBlog()
         return render(request, 'createBlog.html', {'form': form})
 
+def detail(request, blog_id):
+    # 블로그 글 객체를 판별하기 위해 'blog_id'를 매개변수로 받고 pk에 대입
+    blog_detail = get_object_or_404(Blog, pk=blog_id)
+    # 'SELECT' -> class.objects.all()
+    # 'WHERE' -> class.objects.filter()
+    comments = Comment.objects.filter(blog_id=blog_id)
 
+    context = {
+        'blog_detail': blog_detail,
+        'comments': comments,
+    }
+
+    return render(request, 'detail.html', context)

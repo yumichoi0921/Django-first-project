@@ -16,11 +16,11 @@
                 <h4>작성자: {{ blog.author }}</h4>
                 <br>
 {#                '| safe'->원하지 않는 태그가 화면에 나오지 않게하는 필터#}
-                <p class="lead">{{ blog.body | safe }}</p>
-                <br>
+{#                <p class="lead">{{ blog.body | safe }}</p>#}
+{#                <br>#}
                 <a class="btn btn-lg btn-primary"
-                   href="{{ site.baseurl }}/docs/{{ site.docs_version }}/components/navbar/"
-                   role="button">View navbar docs &raquo;</a>
+{#                   {% url 'url이름' 인자 %}#}
+                   href="{% url 'detail' blog.id %}" role="button">View navbar docs &raquo;</a>
 {#      <h1>Navbar example</h1>#}
 {#      <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>#}
 {#      <a class="btn btn-lg btn-primary" href="{{ '/components/navbar' }}" role="button">View navbar docs &raquo;</a>#}

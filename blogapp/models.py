@@ -16,3 +16,12 @@ class Blog(models.Model):
     # 기본값을 관리자 계정으로 설정
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=1)
     body = RichTextUploadingField()
+
+# 댓글을 위한 model
+class Comment(models.Model):
+    # [Blog] 모델의 PrimaryKey를 ForeignKey로 참조
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+    comment_date = models.DateTimeField(auto_now_add=True)
+    comment_user = models.TextField(max_length=20)
+    comment_thumbnail_url = models.TextField(max_length=300)
+    comment_textfield = models.TextField()

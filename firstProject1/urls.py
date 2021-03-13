@@ -31,6 +31,8 @@ urlpatterns = [
     path('blogMain/', blogapp.views.blogMain, name = 'blogMain'),# http://www.블로그주소.com/blogMain/ 으로 접속
     path('blogMain/createBlog/', blogapp.views.createBlog, name = 'createBlog'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    # 'blog_id'에 대한 detail 페이지
+    path('blogMain/detail/<int:blog_id>/', blogapp.views.detail, name = 'detail'),
 ]
 
 # MEDIA 경로를참조
